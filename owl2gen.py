@@ -25,11 +25,7 @@ def main(num_axioms, ontology_iri):
     ontology_line = 'Ontology(<{0}>\n'.format(ontology_iri)
     w(ontology_line)
 
-    for _ in xrange(num_axioms - pad):
-        class_name = ':' + capitalized_string(10)
-        individual_name = ':' + capitalized_string(10)
-        w('ClassAssertion({0} {1})\n'.format(class_name, individual_name))
-
+    # different axioms
     for _ in xrange(pad):
         class_name = ':' + capitalized_string(10)
         individual_name = ':' + capitalized_string(10)
@@ -37,7 +33,14 @@ def main(num_axioms, ontology_iri):
         class_name = ':' + capitalized_string(10)
         individual_name = ':' + capitalized_string(10)
         file_b.write('ClassAssertion({0} {1})\n'.format(class_name, individual_name))
+        
+    # common axioms
+    for _ in xrange(num_axioms - pad):
+        class_name = ':' + capitalized_string(10)
+        individual_name = ':' + capitalized_string(10)
+        w('ClassAssertion({0} {1})\n'.format(class_name, individual_name))
 
+        
     # close the ontology statement
     w(')\n')
 
